@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E-Registrar</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">
+        <i class="fa fa-graduation-cap"></i>
+        E-REGISTRAR
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+            aria-controls="navbarColor01"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">HOME</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/students">STUDENTS</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/students">Students</a></li>
+                <li class="breadcrumb-item active">New Student</li>
+            </ol>
+        </div>
+        <div class="col-md-12">
+            <div class="card border-primary mb-3">
+                <div class="card-header">New Student</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form action="/student/new" th:action="@{/student/new}" th:object="${student}" method="post">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="studentNumber">Student Number <span class="text-danger">*</span></label>
+                                            <input type="text" id="studentNumber" class="form-control" th:field="*{studentNumber}" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="firstName">Student First Name <span class="text-danger">*</span></label>
+                                            <input type="text" id="firstName" class="form-control" th:field="*{firstName}" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="middleName">Student Middle Name</label>
+                                            <input type="text" id="middleName" class="form-control" th:field="*{middleName}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="lastName">Student Last Name <span class="text-danger">*</span></label>
+                                            <input type="text" id="lastName" class="form-control" th:field="*{lastName}" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="cgpa">Student CGPA </label>
+                                            <input type="number" id="cgpa" class="form-control" th:field="*{cgpa}" pattern="^\d*(\.\d{0,2})?$"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="enrollmentDate">Student Enrollment Date <span class="text-danger">*</span></label>
+                                            <input type="date" id="enrollmentDate" class="form-control" th:field="*{enrollmentDate}" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="international">International</label>
+                                            <select th:field="*{international}" id="international" class="form-control">
+                                                <option th:value="1">Yes</option>
+                                                <option th:value="0">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    &copy; E-Registrar, 2019
+</div>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+<script>
+    $("form").validate();
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E-Registrar</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">
+        <i class="fa fa-graduation-cap"></i>
+        E-REGISTRAR
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">HOME <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/students">STUDENTS</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Students</li>
+            </ol>
+        </div>
+        <div class="col-md-12">
+            <div class="card border-primary mb-3">
+                <div class="card-header">List of Students</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <form class="form-inline">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search"/>
+                                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+                                    <i class="fa fa-search"></i>
+                                    Search
+                                </button>
+                                <a href="/students" class="btn btn-secondary my-2 my-sm-0 clear-search" type="submit">
+                                    <i class="fa fa-eraser"></i>
+                                    Clear Search
+                                </a>
+                            </form>
+                        </div>
+                        <div class="col-md-3" style="float: right">
+                            <a href="/student/new" class="btn btn-primary btn-block">
+                                <i class="fa fa-plus-circle"></i>
+                                ADD NEW STUDENT
+                            </a>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Names</th>
+                                        <th scope="col">CGPA</th>
+                                        <th scope="col">Enrollment Date</th>
+                                        <th scope="col">International</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="table-active" th:each="st, counter : ${students}">
+                                        <th scope="row">
+                                            <span th:text="${counter}"></span>
+                                        </th>
+                                        <td>
+
+                                        </td>
+                                        <td>
+                                            <span th:text="${st.firstName}"></span>
+                                            <span th:text="${st.middleName != null}"></span>
+                                            <span th:text="${st.lastName}"></span>
+                                        </td>
+                                        <td>
+                                            <span th:text="${st.cgpa}"></span>
+                                        </td>
+                                        <td>
+                                            <span th:text="${st.enrollmentDate}"></span>
+                                        </td>
+                                        <td>
+                                            <span th:text="${st.international}"></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    &copy; E-Registrar, 2019
+</div>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

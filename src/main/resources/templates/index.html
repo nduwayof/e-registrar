@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E-Registrar</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">E-REGISTRAR</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">HOME <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/students">STUDENTS</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1 class="display-3">E-REGISTRAR - CS425 Lab VIII</h1>
+                <p class="lead">
+                    Proin commodo quam ut dictum mollis. Cras dignissim congue elit, ac viverra ex accumsan ut.
+                    Donec pretium lobortis maximus. Curabitur facilisis rutrum ex vitae ornare. Fusce libero magna,
+                    iaculis vel lacus non, interdum accumsan purus.
+                </p>
+                <hr class="my-4">
+                <p>Morbi non faucibus arcu. Integer ac ex ex. Etiam nunc lorem, porttitor a turpis sed, posuere malesuada urna.
+                    Maecenas auctor orci magna, eu consequat augue lacinia eu. Pellentesque quis lorem ac lacus auctor semper.
+                    Donec luctus sit amet quam ut lacinia. Nunc malesuada, nibh at laoreet dapibus, arcu enim blandit dui,
+                    et posuere nisi neque quis elit. Sed ultricies et ex in ultrices. Maecenas sed venenatis metus, fringilla
+                    eleifend neque. Phasellus non pharetra odio. Aliquam porttitor,
+                    tortor ac lobortis hendrerit, justo dui egestas quam, a posuere massa nisi sed velit. Aliquam
+                    semper metus quis lacinia laoreet. Integer molestie egestas fermentum. Donec orci sem, tincidunt
+                    vitae semper eu, tempus sit amet orci. Sed ultricies elit id ultrices consectetur. Mauris tincidunt
+                    sem lectus.
+                </p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="/students" role="button">VIEW STUDENTS</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    &copy; E-Registrar, 2019
+</div>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
