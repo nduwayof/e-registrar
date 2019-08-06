@@ -18,7 +18,9 @@ import javax.validation.Valid;
  */
 @Controller
 public class StudentController {
-    
+
+    private static final String STUDENTS = "redirect:/students";
+
     private IStudentService studentService;
     private IStudentQueryService studentQueryService;
 
@@ -80,7 +82,7 @@ public class StudentController {
             return "student/new-student";
         }
         studentService.createStudent(student);
-        return "redirect:/students";
+        return STUDENTS;
     }
 
     /**
@@ -118,7 +120,7 @@ public class StudentController {
             return "student/edit-student";
         }
         studentService.updateStudent(student);
-        return "redirect:/students";
+        return STUDENTS;
     }
 
     /**
@@ -131,7 +133,7 @@ public class StudentController {
     @GetMapping(value = {"/student/delete/{studentId}"})
     public String deleteStudent(@PathVariable Long studentId) {
         studentService.deleteStudent(studentId);
-        return "redirect:/students";
+        return STUDENTS;
     }
 
     /**

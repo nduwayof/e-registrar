@@ -20,10 +20,10 @@
 
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">HOME <span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item">
+                <a class="nav-link" href="/">HOME</a>
+            </li>
+            <li class="nav-item active">
                 <a class="nav-link" href="/students">STUDENTS</a>
             </li>
         </ul>
@@ -61,12 +61,16 @@
                                 ADD NEW STUDENT
                             </a>
                         </div>
+                    </div>
+                    <br>
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
                                         <th scope="col">#</th>
+                                        <th scope="col">Student #</th>
                                         <th scope="col">Names</th>
                                         <th scope="col">CGPA</th>
                                         <th scope="col">Enrollment Date</th>
@@ -75,16 +79,17 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="table-active" th:each="st, counter : ${students}">
+                                    <tr class="table-light" th:each="st, counter : ${students}">
                                         <th scope="row">
-                                            <span th:text="${counter}"></span>
+                                            <span th:text="${counter.count}"></span>
                                         </th>
                                         <td>
-
+                                            <span th:text="${st.studentNumber}"></span>
                                         </td>
                                         <td>
                                             <span th:text="${st.firstName}"></span>
-                                            <span th:text="${st.middleName != null}"></span>
+                                            <span th:if="${!st.middleName.isEmpty() && st.middleName != null && st.middleName != ''}"
+                                                  th:text="${st.middleName}"></span>
                                             <span th:text="${st.lastName}"></span>
                                         </td>
                                         <td>
@@ -94,12 +99,56 @@
                                             <span th:text="${st.enrollmentDate}"></span>
                                         </td>
                                         <td>
-                                            <span th:text="${st.international}"></span>
+                                            <span th:if="${st.international == true}" th:text="YES"></span>
+                                            <span th:if="${st.international == false}" th:text="NO"></span>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)" class="btn btn-outline-danger btn-sm" data-toggle="modal" th:data-target="${'#student'+st.studentId}">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                            <a href="javascript:void(0)" th:href="@{/student/edit/{studentId} (studentId = ${st.studentId})}" class="btn btn-outline-success btn-sm">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <div class="modal fade" th:id="${'student'+st.studentId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="exampleModalLabel">
+                                                                <span th:text="${'Delete '+st.firstName +' '+st.middleName +' '+st.lastName}"></span>
+                                                            </h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h6>
+                                                                <span th:text="${'Are sure you want to delete '+st.firstName +' '+st.middleName +' '+st.lastName +' ?'}">
+                                                                </span>
+                                                            </h6>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="javascript:void(0)" class="btn btn-secondary" data-dismiss="modal">CANCEL</a>
+                                                            <a th:href="@{/student/delete/{studentId} (studentId = ${st.studentId})}"  class="btn btn-primary">DELETE</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 pull-right">
+                            <ul class="pagination pagination-sm">
+                                <li th:each="i : ${#numbers.sequence(1, students.totalPages)}"
+                                    th:class="${currentPageNo}==${i-1}?'page-item active':'page-item'">
+                                    <a th:href="@{/students(pageno=${i-1})}"
+                                       th:text="${i}" class="page-link"></a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
